@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Myk Andrew Agarin</title>
+  <style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-image: url('https://www.dreamhost.com/blog/wp-content/uploads/2016/07/Cloud-Server-Security.jpg?fbclid=IwY2xjawJfendleHRuA2FlbQIxMAABHl_sVBq25NxXdqUz6jhlCtV69C8S5zMJ94ZS0zf9_1Mys7FAmwZ9sRC0nr8R_aem_6iflzhEEoNgeE1pBm6l3Sw');
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 100px;
+    text-align: center;
+    color: #000;
+    height: 100%;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: -1;
+  }
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+    background-image: none;
+  }
+
+  header {
+    text-align: center;
+    padding: 20px;
+    background: #87ceeb;
+    border-bottom: 2px solid #ddd;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  nav a:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  section ul {
+    display: inline-block;
+    text-align: left;
+  }
+
+  footer {
+    width: 100vw;
+    padding: 15px 0;
+    background: #87ceeb;
+    border-top: 2px solid #ddd;
+    text-align: center;
+    position: relative;
+    left: 0;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .social-icons a {
+    font-size: 22px;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    color: #87ceeb;
+  }
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ccc;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+.profile-img:hover {
+    transform: scale(1.1);
+}
+
+
+  .home-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-details {
+    flex: 1;
+  }
+
+  .profile-details h1 {
+    font-size: 2.5em;
+    margin: 0;
+  }
+
+  .profile-details p {
+    font-size: 1.2em;
+  }
+
+  .profile-details ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .profile-details ul li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+
+  .profile-details ul li b {
+    font-weight: bold;
+  }
+
+  #about h2, #projects h2 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+.project-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+  transform: scale(1.05);
+}
+
+.project-status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.badge {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.completed {
+  background-color: #4caf50;
+}
+
+.in-progress {
+  background-color: #ff9800;
+}
+
+.project-tags {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: #87ceeb;
+  padding: 5px 15px;
+  border-radius: 20px;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.tag:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+.project-item .project-title {
+  font-size: 1.8em;
+  margin-bottom: 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.project-item .project-content {
+  display: block;  
+  opacity: 1;  
+  margin-top: 20px; 
+}
+
+.project-item:hover .project-info {
+    display: block;
+    opacity: 1;
+}
+
+.project-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.project-item:hover h3 {
+    color: #87ceeb; 
+}
+
+.project-item ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.project-item ul li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+
+  body.dark-mode header {
+    background-color: #333;
+  }
+
+  body.dark-mode section {
+    background-color: #1f1f1f;
+  }
+
+  body.dark-mode a {
+    color: #fff;
+  }
+
+  body.dark-mode .project-item {
+    background-color: #333;
+    color: #fff;
+  }
+
+  body.dark-mode .project-item h3 {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  #scrollToTopBtn.highlight {
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark-mode footer {
+    background-color: #121212; 
+  }
+
+  body.dark-mode #scrollToTopBtn {
+    background-color: #333; 
+    color: #fff; 
+    border: none; 
+  }
+
+  footer {
+    background-color: #87ceeb; 
+  }
+
+  #scrollToTopBtn {
+    background-color: #87ceeb; 
+    color: #000; 
+    border: none; 
+  }
+  .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  justify-items: center;
+  align-items: center;
+}
+
+.skill-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.skill-item p {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+}
+.skill-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .skill-item p {
+  color: #fff;
+}
+</style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact Me</a>
+      
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="home-content">
+      <div class="left-column">
+        <div class="profile-image">
+          <img src="https://lh3.googleusercontent.com/a/ACg8ocLHJfEyYoC65WRBqGd7GL0XHQbfOGlr7dRO7p92cM8asuiAF3c=s360-c-no" alt="Myk Andrew Yazon Agarin" class="profile-img">
+        </div>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/share/1EBKjEwY8J/" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="social-icons second-row">
+          <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://dribbble.com/yourprofile" target="_blank"><i class="fab fa-dribbble"></i></a>
+          <a href="https://www.threads.net/@yourprofile" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+      </div>
+      <div class="profile-details">
+        <h1>Myk Andrew Y. Agarin</h1>
+        <p>WEB DEVELOPER AND IT SPECIALIST</p>
+        <p>Hi, I'm Myk, 20 years old and currently studying in Pamantasan ng Lungsod ng San Pablo. Taking Bachelor in Science in Technology and I'm in my 2nd year, 2nd term.</p>
+
+        <ul>
+          <li><b>Specialized in:</b> Database management, Programming, and Web Development</li>
+          <li><b>Building:</b> Engaging and responsive websites that stand out</li>
+          <li><b>Expert in:</b> Front-end and back-end development, creating seamless user experiences</li>
+          <li><b>With a keen eye:</b> For design and clean code, I bring ideas to life on the website</li>
+        </ul>
+        <p><b>HIRE ME:</b> <a href="https://www.facebook.com/share/1EBKjEwY8J/" target="_blank">Contact me on Facebook</a></p>
+        <p><b>VIEW MY WORK:</b> <a href="#projects">Check out my projects</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>ABOUT ME</h2>
+    <p>I'm a passionate Frontend Developer with experience in building user-friendly and responsive websites. As a UI/UX Designer, I create visually appealing and intuitive designs that enhance user experience.</p>
+
+    <h3>Skills Overview</h3>
+
+<div class="skills-grid">
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+    <p>HTML5</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+    <p>CSS3</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+    <p>JavaScript</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+    <p>React</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+    <p>Node.js</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+    <p>Figma</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop" />
+    <p>Photoshop</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://img.icons8.com/ios-filled/50/adobe-xd.png" alt="Adobe XD" />
+    <p>Adobe XD</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" />
+    <p>Express.js</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+    <p>MySQL</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+    <p>MongoDB</p>
+  </div>
+  <div class="skill-item">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" alt="Sequelize" />
+    <p>Sequelize</p>
+  </div>
+</div>
+
+
+    <h3>Experience</h3>
+    <p>With 2 years of experience, I have worked on multiple projects ranging from startups to project solutions.</p>
+  </section>
+
+    <section id="projects">
+    <h2>PROJECTS</h2>
+    <div class="projects-grid">
+      <div class="project-item">
+        <h3>TaskMaster</h3>
+        <div class="project-status">
+          <span class="badge completed">Completed</span>
+        </div>
+        <p>TaskMaster is a lightweight, user-friendly to-do list app that helps users manage their daily tasks efficiently.</p>
+        <ul>
+          <li>Add & remove tasks easily</li>
+          <li>Mark tasks as "Completed"</li>
+          <li>Simple & clean UI</li>
+          <li>Local storage (saves tasks even after closing the browser)</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">LocalStorage</span>
+          <span class="tag">UI/UX</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <h3>WeatherNow</h3>
+        <div class="project-status">
+          <span class="badge in-progress">In Progress</span>
+        </div>
+        <p>WeatherNow lets users check current weather conditions anywhere, anytime, using live data from an API.</p>
+        <ul>
+          <li>Real-time weather data using OpenWeather API</li>
+          <li>Location-based weather updates</li>
+          <li>Responsive and user-friendly interface</li>
+          <li>Displays weather details like temperature, humidity, and wind speed</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">API</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer id="contact">
+  <p>
+    <p><strong>Contact Me: </strong></p>
+    <a href="https://www.facebook.com/share/1EBKjEwY8J/" target="_blank">Facebook</a> |
+    <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> |
+    <a href="https://github.com/yourprofile" target="_blank">GitHub</a> |
+    <a href="https://youtube.com/yourchannel" target="_blank">Youtube</a> |
+    <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> |
+    <a href="https://dribbble.com/yourprofile" target="_blank">Dribble</a> |
+    <a href="https://www.threads.net/@yourprofile" target="_blank">Threads</a>
+  </p>
+  <p>© 2025 Myk Andrew Yazon Agarin. All Rights Reserved.</p>
+  <p>Created with love and passion for web development.</p>
+</footer>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <button id="scrollToTopBtn" style="display:none;position:fixed;bottom:80px;right:20px;padding:15px;background-color:#87ceeb;border:none;border-radius:50%;cursor:pointer;font-size:18px;">
+    ↑
+  </button>
+
+  <script>
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.innerText = '🌙 Dark Mode';
+    darkModeToggle.style.position = 'fixed';
+    darkModeToggle.style.bottom = '20px';
+    darkModeToggle.style.right = '20px';
+    darkModeToggle.style.padding = '10px';
+    darkModeToggle.style.background = '#87ceeb';
+    darkModeToggle.style.border = 'none';
+    darkModeToggle.style.borderRadius = '5px';
+    darkModeToggle.style.cursor = 'pointer';
+    darkModeToggle.style.fontSize = '16px';
+    document.body.appendChild(darkModeToggle);
+
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkModeToggle.innerText = document.body.classList.contains('dark-mode') ? '🌞 Light Mode' : '🌙 Dark Mode';
+    });
+
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    window.onscroll = function () {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+
+      if (scrollTop > 200 || scrollTop + clientHeight >= scrollHeight - 10) {
+        scrollToTopBtn.style.display = 'block';
+        if (scrollTop + clientHeight >= scrollHeight - 10) {
+          scrollToTopBtn.classList.add('highlight');
+        } else {
+          scrollToTopBtn.classList.remove('highlight');
+        }
+      } else {
+        scrollToTopBtn.style.display = 'none';
+      }
+    };
+
+    scrollToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
